@@ -1,5 +1,4 @@
-const { log } = require('console')
-const {Client, Intents, MessageFlags, GuildMemberRoleManager} = require('discord.js')
+const {Client, Intents} = require('discord.js')
 const {token} = require('./config.json')
 const BOT_CMD = '.'
 const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]})
@@ -38,7 +37,7 @@ client.on('messageCreate', (message)=>{
     // message has at least another character after bot command
     // command doesn't start with ' '
     // message has at least one mention
-    if(message.content.startsWith(".") && message.content.charAt(1) != ' ' && message.content.length > 1 && message.mentions.members.at(0) != undefined){
+    if(message.content.startsWith(BOT_CMD) && message.content.charAt(1) != ' ' && message.content.length > 1 && message.mentions.members.at(0) != undefined){
         
         // extracting command from message for bot        
         let command = getWord(message.content, message.content.length);
